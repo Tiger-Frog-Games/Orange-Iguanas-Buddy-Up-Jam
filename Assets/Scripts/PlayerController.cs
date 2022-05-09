@@ -10,8 +10,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float depth = 0f;
     [SerializeField, Range(-0.5f, .5f)] private float ballast = 0f;
 
-
-
     private float ballastInput;
 
     private Vector2 velocity;
@@ -33,7 +31,6 @@ public class PlayerController : MonoBehaviour
         else
             velocity.y = ballast;
         depth = this.transform.position.y;
-        Debug.Log(ballastInput);
     }
 
     private void FixedUpdate()
