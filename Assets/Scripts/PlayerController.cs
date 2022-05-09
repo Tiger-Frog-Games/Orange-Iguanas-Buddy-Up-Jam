@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField, Range(10f, 50f)] private float moveSpeed = 15f;
     [SerializeField] private float pressure;
     [SerializeField] private float time = 0f;
     [SerializeField] private float depth = 0f;
-    [SerializeField, Range(0f, 1f)] private float ballast = 0f;
+    [SerializeField, Range(-0.5f, .5f)] private float ballast = 0f;
 
 
 
@@ -28,18 +27,29 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         velocity.x = Input.GetAxisRaw("Horizontal");
-        ballastInput = Input.GetAxisRaw("Vertical");
-        velocity.y = ballast;
+        ballastInput = Input.GetAxis("Vertical");
+        if (ballast >= -.1f && ballast <= .1f)
+            velocity.y = 0;
+        else
+            velocity.y = ballast;
         depth = this.transform.position.y;
+        Debug.Log(ballastInput);
     }
 
     private void FixedUpdate()
     {
         body.MovePosition(body.position + velocity * moveSpeed * Time.fixedDeltaTime);
-        if (ballastInput > 0f && ballast < 1f)
-            ballast += .01f;
-        else if (ballastInput < 0f && ballast > 0f)
-            ballast -= .01f;
+        if (ballast >= -0.5f && ballast <= .5f)
+        {
+            if (ballastInput == -1f)
+                ballast -= .01f;
+            else if (ballastInput == 1f)
+                ballast += .01f;
+        }
+        else if (ballast < -.5f)
+            ballast = -.5f;
+        else if (ballast > .5f)
+            ballast = .5f;
     }
 
     public float GetDepth()
