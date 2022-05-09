@@ -20,7 +20,7 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        depthText.text = "Depth: " + playerController.GetDepth().ToString("G1");
-        ballastText.text = "Ballast: " + playerController.GetBallast().ToString("G1");
+        depthText.text = "Depth: " + playerController.GetDepth().ToString("F3");
+        ballastText.text = "Ballast: " + playerController.GetBallast().ToString("F1");
     }
 }
