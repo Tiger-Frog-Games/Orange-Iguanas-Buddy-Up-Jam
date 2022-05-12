@@ -8,7 +8,7 @@ public class AudioController : MonoBehaviour
     #region Variables
 
     [SerializeField] private AudioSource[] musicAudio;
-    [SerializeField] private AudioSource sfxAudio;
+    [SerializeField] private AudioSource[] sfxAudio;
     [SerializeField] private PlayerController playerController;
 
     private AudioSource currentlyPlaying;
@@ -16,7 +16,8 @@ public class AudioController : MonoBehaviour
 
     private float depth;
 
-    private float volumeSetting = 1f;
+    private float musicVolSetting = 1f;
+    private float sfxVolSetting = 1f;
 
     #endregion
 
@@ -27,7 +28,7 @@ public class AudioController : MonoBehaviour
     void Start()
     {
         currentlyPlaying = musicAudio[0];
-        musicAudio[0].volume = volumeSetting;
+        musicAudio[0].volume = musicVolSetting;
     }
 
     // Update is called once per frame
@@ -75,7 +76,7 @@ public class AudioController : MonoBehaviour
             lastPlayed = currentlyPlaying;
             StartCoroutine(FadeAudioSource(lastPlayed, 1f, 0f));
             currentlyPlaying = track;
-            StartCoroutine(FadeAudioSource(currentlyPlaying, 3f, volumeSetting));
+            StartCoroutine(FadeAudioSource(currentlyPlaying, 3f, musicVolSetting));
         }
     }
 
@@ -91,6 +92,21 @@ public class AudioController : MonoBehaviour
             yield return null;
         }
         yield break;
+    }
+
+    private void PlaySFX(AudioSource sfx)
+    {
+        sfx.Play();
+    }    
+
+    public void TorpedoLaunch()
+    {
+        PlaySFX(sfxAudio[0]);
+    }
+
+    public void TorpedoImpact()
+    {
+        PlaySFX(sfxAudio[1]);
     }
 
     #endregion

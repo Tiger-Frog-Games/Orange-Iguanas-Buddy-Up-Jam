@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField, Range(10f, 50f)] private float moveSpeed = 15f;    // Movement Speed variable, higher moves faster
+    [SerializeField, Range(0f, 10f)] private float moveSpeed = 1f;    // Movement Speed variable, higher moves faster
     [SerializeField] private float pressure;                            // Pressure variable, currently not using
     [SerializeField] private float time = 0f;                           // Time variable, currently not using
     [SerializeField] private float depth = 0f;                          // Depth variable, tracks how deep the sub is using y coordinate
@@ -96,6 +97,17 @@ public class PlayerController : MonoBehaviour
         happyTimer = 0;
         happyMeter = 20;
     }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene(0);
+        }
+
+    }
+
 
 
     // Getter function for depth
