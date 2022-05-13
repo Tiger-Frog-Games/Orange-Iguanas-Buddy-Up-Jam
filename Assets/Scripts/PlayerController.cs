@@ -1,11 +1,15 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Rewired;
 
 public class PlayerController : MonoBehaviour
 {
+    // Rewired assets
+    [SerializeField] private int playerID = 0;
+    [SerializeField] private Player player;
 
-    [SerializeField, Range(0f, 10f)] private float moveSpeed = 1f;    // Movement Speed variable, higher moves faster
+    [SerializeField, Range(0f, 10f)] private float moveSpeed = 1f;      // Movement Speed variable, higher moves faster
     [SerializeField] private float pressure;                            // Pressure variable, currently not using
     [SerializeField] private float time = 0f;                           // Time variable, currently not using
     [SerializeField] private float depth = 0f;                          // Depth variable, tracks how deep the sub is using y coordinate
@@ -21,19 +25,25 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;                                    // Boolean variable to track whether sub is facing left or right  
     private Vector2 velocity;                                           // Vector2 for affecting movement   
     private Rigidbody2D body;                                           // Variable for reference to rigidbody of submarine
+    private Health health;
+
+    private float collisionTime = 0f;
+    private float collisionTimeThreshold = 2f;
 
     // Start is called before the first frame update
     private void Awake()
     {
+        player = ReInput.players.GetPlayer(playerID);
         body = GetComponent<Rigidbody2D>();
+        health = GetComponent<Health>();    
     }
 
     // Update is called once per frame
     void Update()
     {
-        velocity.x = Input.GetAxisRaw("Horizontal");    // gets input for horizontal movement
-        ballastInput = Input.GetAxis("Vertical");       // gets input for vertical movement
-        partyInput = Input.GetButtonDown("Party");      // gets input for Party action
+        velocity.x = player.GetAxisRaw("MoveHorizontal");    // gets input for horizontal movement
+        ballastInput = player.GetAxis("MoveVertical");       // gets input for vertical movement
+        partyInput = player.GetButtonDown("Party");      // gets input for Party action
         if (ballast >= -.1f && ballast <= .1f)          // if the ballast is between -.1 and .1 there is no vertical movement (aside from gravity)
             velocity.y = 0;
         else
@@ -69,6 +79,9 @@ public class PlayerController : MonoBehaviour
             happyMeter = 20;
         else
             happyMeter = 20 - Convert.ToInt32(happyTimer);
+
+        if (partyInput)
+            Party();
     }
 
     private void FlipSub()
@@ -77,11 +90,11 @@ public class PlayerController : MonoBehaviour
         // Check if facing right or left, and flip the submarine
         if (facingRight)
         {
-            this.transform.localScale = new Vector3(-1, 1, 1);
+            this.transform.localScale = new Vector3(-1.5f, 1.5f, 1);
         }
         else
         {
-            this.transform.localScale = new Vector3(1, 1, 1);
+            this.transform.localScale = new Vector3(1.5f, 1.5f, 1);
         }
 
         // flip the Torpedo Launcher
@@ -98,14 +111,44 @@ public class PlayerController : MonoBehaviour
         happyMeter = 20;
     }
 
-
+    // Collision dector
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && health.GetCurrentHealth() > 1)   // If you have more than 1 health left and collide with enemey, health decreses
         {
+                collisionTime = 0f;
+                health.DecreaseHealth();
+        }
+        else if (collision.gameObject.tag == "Enemy" && health.GetCurrentHealth() == 1) // If you only have one health left and collide with enemy, END OF GAME!!!
+        {
+            // Probably we want to change this to actually display some text, THEN load that scene when you push a button but for now...
             SceneManager.LoadScene(0);
         }
 
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if (collisionTime < collisionTimeThreshold)
+            {
+                collisionTime += Time.deltaTime;
+            }
+            else
+            {
+                if (health.GetCurrentHealth() > 1)
+                {
+                    health.DecreaseHealth();
+                }
+                else if (health.GetCurrentHealth() == 1)
+                {
+                    // Logic here for Game Over screen and THEN
+                    SceneManager.LoadScene(0);
+                }
+                collisionTime = 0f;
+            }
+        }      
     }
 
 

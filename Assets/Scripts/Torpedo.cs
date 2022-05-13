@@ -11,6 +11,8 @@ public class Torpedo : MonoBehaviour
     private GameObject playerObject;
     private AudioController audioController;
 
+    private Health health;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,17 +22,17 @@ public class Torpedo : MonoBehaviour
 
         body = GetComponent<Rigidbody2D>();
         body.velocity = transform.right * speed;
-//        Physics.IgnoreCollision(Torpedo.GetComponent<CapsuleCollider2D>, playerObject.GetComponent<CapsuleCollider2D>);
+        Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), playerObject.GetComponent<PolygonCollider2D>());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
         {
-            Destroy(collision.gameObject);
+            health = collision.gameObject.GetComponent<Health>();
+            health.DecreaseHealth();
 
-        }    
-            
+        }                
         Destroy(gameObject);
         audioController.TorpedoImpact();
     }

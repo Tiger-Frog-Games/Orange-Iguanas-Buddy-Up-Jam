@@ -9,9 +9,9 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private Transform target;
     [SerializeField] private float speed = 200f;
-    [SerializeField] private float nextWaypointDistance = 3f;
-    [SerializeField] private float waitTime = 1f;
-    [SerializeField] private float changeTime = .5f;
+    [SerializeField] private float nextWaypointDistance = 1.5f;
+    [SerializeField] private float waitTime = .5f;
+    [SerializeField] private float changeTime = .25f;
 
     Path path;
     private int currentWaypoint = 0;

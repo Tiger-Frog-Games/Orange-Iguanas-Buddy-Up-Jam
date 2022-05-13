@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Treasure : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        //        logic for win state / ending game / scene change
+        if (collision.tag == "Player")
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 }
