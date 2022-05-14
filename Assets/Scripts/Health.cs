@@ -20,8 +20,12 @@ public class Health : MonoBehaviour
         currentHealth -= 1;
         if (currentHealth <= 0)
         {
+            if (gameObject.tag == "Enemy")
+                gameObject.GetComponent<Enemy>().DetachBubbles();
+
             Destroy(gameObject);
             //Destroy the game object if health is at or below zero
+
         }
     }
 

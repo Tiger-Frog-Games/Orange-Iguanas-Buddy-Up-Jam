@@ -6,7 +6,7 @@ using Pathfinding;
 public class Enemy : MonoBehaviour
 {
 
-
+    [SerializeField] private ParticleSystem bubbles;
     [SerializeField] private Transform target;
     [SerializeField] private float speed = 200f;
     [SerializeField] private float nextWaypointDistance = 1.5f;
@@ -86,4 +86,11 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
+    public void DetachBubbles()
+    {
+        bubbles.transform.parent = null;
+
+    }
+
 }
