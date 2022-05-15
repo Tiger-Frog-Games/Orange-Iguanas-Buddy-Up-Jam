@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deca755c79101c8418b04e2fcffb0b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubbles: {fileID: 7798611437356849992, guid: e8a185bf44aa3c3428d4246f9031697a, type: 3}
   target: {fileID: 0}
   speed: 100
   nextWaypointDistance: 3
