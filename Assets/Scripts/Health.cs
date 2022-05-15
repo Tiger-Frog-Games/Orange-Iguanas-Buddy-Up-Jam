@@ -15,13 +15,13 @@ public class Health : MonoBehaviour
     }
 
     // Function to lower health by 1 
-    public void DecreaseHealth()
+    public void DecreaseHealthByOne()
     {
         currentHealth -= 1;
         if (currentHealth <= 0)
         {
             if (gameObject.tag == "Enemy")
-                gameObject.GetComponent<Enemy>().DetachBubbles();
+ //               gameObject.GetComponent<Enemy>().DetachBubbles();
 
             Destroy(gameObject);
             //Destroy the game object if health is at or below zero
@@ -29,8 +29,23 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void DecreaseHealthByFive()
+    {
+        currentHealth -= 5;
+        if (currentHealth <= 0)
+        {
+            if (gameObject.tag == "Enemy")
+                //               gameObject.GetComponent<Enemy>().DetachBubbles();
+
+                Destroy(gameObject);
+            //Destroy the game object if health is at or below zero
+
+        }
+    }
+
+
     // Function to increase health by 1
-    public void IncreaseHealth()
+    public void IncreaseHealthByOne()
     {
         if (currentHealth >= maxHealth)
         {

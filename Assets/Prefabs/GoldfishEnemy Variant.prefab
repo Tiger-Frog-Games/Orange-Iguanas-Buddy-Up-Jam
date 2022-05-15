@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043398, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: m_Name
-      value: GoldfishEnemy
+      value: GoldfishEnemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043405, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: m_RootOrder
@@ -79,8 +79,7 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: b5728335527c58a40b49250e407a2ef0, type: 3}
-    m_RemovedComponents:
-    - {fileID: 564545768330043393, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
 --- !u!1 &6663163517855332320 stripped
 GameObject:
@@ -116,4 +115,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 1
+  maxHealth: 5

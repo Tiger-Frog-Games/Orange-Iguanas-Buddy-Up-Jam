@@ -109,5 +109,14 @@ public class AudioController : MonoBehaviour
         PlaySFX(sfxAudio[1]);
     }
 
+    public void BulletLaunch()
+    {
+        PlaySFX(sfxAudio[2]);
+    }
+    public void BulletImpact()
+    {
+        PlaySFX(sfxAudio[3]);
+    }
+
     #endregion
 }

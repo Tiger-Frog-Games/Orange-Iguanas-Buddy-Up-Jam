@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Torpedo : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-    [SerializeField, Range(1f, 50f)] private float speed = 20f;
+    [SerializeField, Range(1f, 50f)] private float speed = 40f;
 
     private Rigidbody2D body;
     private GameObject audioControllerObject;
@@ -21,8 +21,8 @@ public class Torpedo : MonoBehaviour
         playerObject = GameObject.FindWithTag("Player");
 
         body = GetComponent<Rigidbody2D>();
-        body.velocity = transform.right * speed;
-        Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), playerObject.GetComponent<PolygonCollider2D>());
+        body.velocity = body.velocity * speed;
+        Physics2D.IgnoreCollision(GetComponent<CircleCollider2D>(), playerObject.GetComponent<PolygonCollider2D>());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,11 +30,11 @@ public class Torpedo : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             health = collision.gameObject.GetComponent<Health>();
-            health.DecreaseHealthByFive();
+            health.DecreaseHealthByOne();
 
         }                
         Destroy(gameObject);
-        audioController.TorpedoImpact();
+        audioController.BulletImpact();
     }
 
 }

@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && health.GetCurrentHealth() > 1)   // If you have more than 1 health left and collide with enemey, health decreses
         {
                 collisionTime = 0f;
-                health.DecreaseHealth();
+                health.DecreaseHealthByOne();
         }
         else if (collision.gameObject.tag == "Enemy" && health.GetCurrentHealth() == 1) // If you only have one health left and collide with enemy, END OF GAME!!!
         {
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (health.GetCurrentHealth() > 1)
                 {
-                    health.DecreaseHealth();
+                    health.DecreaseHealthByOne();
                 }
                 else if (health.GetCurrentHealth() == 1)
                 {

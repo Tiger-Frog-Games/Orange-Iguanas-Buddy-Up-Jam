@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043398, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: m_Name
-      value: SharkEnemy
+      value: SharkEnemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043405, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: m_RootOrder
@@ -129,4 +129,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 1
+  maxHealth: 6
