@@ -10,10 +10,13 @@ public class TorpedoLauncher : MonoBehaviour
     [SerializeField] private Transform torpedoLauncher; // reference to the Torpedo Launch point
     [SerializeField] private GameObject torpedo; // reference to Torpedo prefab object
     [SerializeField] private AudioController audioController; // reference to AudioController for Torpedo Launch sound
+    
+    private PlayerController playerController; // reference to PlayerController for Torpedo ability
 
     private void Awake()
     {
         player = ReInput.players.GetPlayer(playerID);
+        playerController = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -21,7 +24,7 @@ public class TorpedoLauncher : MonoBehaviour
     {
         // Get input for firing the torpedo
 
-        if (player.GetButtonDown("Torpedo"))
+        if (player.GetButtonDown("Torpedo") && playerController.GetHasTorpedo())
         {
             FireTorpedo();
         }

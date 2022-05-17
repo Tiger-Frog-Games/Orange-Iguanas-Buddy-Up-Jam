@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043398, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: m_Name
-      value: SharkEnemy
+      value: SharkEnemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043405, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: m_RootOrder
@@ -129,4 +129,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 1
+  maxHealth: 6
+  spriteRenderer: {fileID: 8771236592310316680}
+  isEnemy: 1
+--- !u!212 &8771236592310316680 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 564545768737797163, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
+  m_PrefabInstance: {fileID: 9109685110860454563}
+  m_PrefabAsset: {fileID: 0}

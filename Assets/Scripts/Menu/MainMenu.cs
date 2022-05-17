@@ -10,6 +10,9 @@ namespace OrangeIguanas
         #region Variables
 
         [SerializeField] private string sceneName;
+        [SerializeField] private GameObject settingsMenu;
+        [SerializeField] private GameObject mainMenu;
+        [SerializeField] private GameObject controls;
 
         #endregion
 
@@ -18,7 +21,7 @@ namespace OrangeIguanas
         #endregion
 
         #region Methods
-        
+
         public void LoadGame()
         {
             SceneManager.LoadScene(sceneName);
@@ -27,6 +30,30 @@ namespace OrangeIguanas
         public void ExitGame()
         {
             Application.Quit();
+        }
+
+        public void ShowSettings()
+        {
+            settingsMenu.SetActive(true);
+
+        }
+
+        public void HideSettings()
+        {
+            settingsMenu.SetActive(false);
+
+        }
+
+        public void ShowControls()
+        {
+            controls.SetActive(true);
+
+        }
+
+        public void HideControls()
+        {
+            controls.SetActive(false);
+
         }
 
         #endregion

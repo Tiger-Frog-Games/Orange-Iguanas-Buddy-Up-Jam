@@ -86,11 +86,11 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-
+    
     public void DetachBubbles()
     {
         bubbles.transform.parent = null;
 
     }
-
+    
 }

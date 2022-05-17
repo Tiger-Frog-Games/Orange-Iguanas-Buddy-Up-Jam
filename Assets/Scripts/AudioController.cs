@@ -42,27 +42,27 @@ public class AudioController : MonoBehaviour
 
     void UpdateMusic(float depth)
     {
-        if (depth > -200)
+        if (depth > -100)
         {
             ChangeTrack(musicAudio[0]);
         }
 
-        else if (depth > -400 && depth <= -200)
+        else if (depth > -300 && depth <= -100)
         {
             ChangeTrack(musicAudio[1]);
         }
 
-        else if (depth > -600 && depth <= -400)
+        else if (depth > -500 && depth <= -300)
         {
             ChangeTrack(musicAudio[2]);
         }
 
-        else if (depth > -800 && depth <= -600)
+        else if (depth > -675 && depth <= -500)
         {
             ChangeTrack(musicAudio[3]);
         }
 
-        else if (depth <= -800)
+        else if (depth <= -675)
         {
             ChangeTrack(musicAudio[4]);
         }
@@ -107,6 +107,25 @@ public class AudioController : MonoBehaviour
     public void TorpedoImpact()
     {
         PlaySFX(sfxAudio[1]);
+    }
+
+    public void CannonballLaunch()
+    {
+        PlaySFX(sfxAudio[2]);
+    }
+    public void CannonballImpact()
+    {
+        PlaySFX(sfxAudio[3]);
+    }
+
+    public void Upgrade()
+    {
+        PlaySFX(sfxAudio[4]);
+        PlaySFX(sfxAudio[5]);
+        PlaySFX(sfxAudio[4]);
+        PlaySFX(sfxAudio[5]);
+        PlaySFX(sfxAudio[4]);
+        PlaySFX(sfxAudio[5]);
     }
 
     #endregion

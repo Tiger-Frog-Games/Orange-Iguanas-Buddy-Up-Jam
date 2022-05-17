@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Rewired;
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Range(-0.5f, .5f)] private float ballast = 0f;     // Ballast variable, between -.5 and .5, where -.1 to .1 don't move and others move up or down
     [SerializeField, Range(0,20)] private int happyMeter = 20;          // Happiness variable, as it goes down to 0 the crew gets unhappy, 20 is max and reset when you party
     [SerializeField] private GameObject torpedoLauncher;                // Reference to torpedo launcher to flip it as well
+    [SerializeField] private SpriteRenderer shipSprite;                 // Reference to ship's sprite for party time
+    [SerializeField] private Sprite[] partyShips; 
     
     private float ballastInput;                                         // Float to take in input for ballast (vertical movement)
     
@@ -29,6 +32,10 @@ public class PlayerController : MonoBehaviour
 
     private float collisionTime = 0f;
     private float collisionTimeThreshold = 2f;
+
+    [SerializeField] private bool hasTorpedo = false;                                    // Boolean variable to track upgrade (Torpedo)
+    [SerializeField] private bool hasBomb = false;                                       // Boolean variable to track upgrade (Bomb)
+    [SerializeField] private bool hasExtraHealth = false;                                // Boolean variable to track upgrade (Extra Health)
 
     // Start is called before the first frame update
     private void Awake()
@@ -48,7 +55,7 @@ public class PlayerController : MonoBehaviour
             velocity.y = 0;
         else
             velocity.y = ballast;                       // if the ballast is outside of that range, vertical movement changes accordingly
-        depth = this.transform.position.y;              // we get the depth from the players y transform position
+        depth = Convert.ToSingle(this.transform.position.y * 2.46);              // we get the depth from the players y transform position
         happyTimer += Time.deltaTime;                   // the happiness timer is updated with time
     }
 
@@ -105,10 +112,33 @@ public class PlayerController : MonoBehaviour
     }
 
     // Party function, when you press party button this resets the happyTimer and puts the meter back to full
-    public void Party()
+
+    private void Party()
+    {
+        StartCoroutine(LetsParty());
+    }
+
+    IEnumerator LetsParty()
     {
         happyTimer = 0;
         happyMeter = 20;
+        for (int i = 0; i < 5; i++)
+        {
+            shipSprite.sprite = partyShips[1];
+            yield return new WaitForSeconds(.05f);
+            shipSprite.sprite = partyShips[2];
+            yield return new WaitForSeconds(.05f);
+            shipSprite.sprite = partyShips[3];
+            yield return new WaitForSeconds(.05f);
+            shipSprite.sprite = partyShips[4];
+            yield return new WaitForSeconds(.05f);
+            shipSprite.sprite = partyShips[5];
+            yield return new WaitForSeconds(.05f);
+            shipSprite.sprite = partyShips[6];
+            yield return new WaitForSeconds(.05f);
+        }
+        shipSprite.sprite = partyShips[0];
+        yield return null;
     }
 
     // Collision dector
@@ -117,7 +147,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && health.GetCurrentHealth() > 1)   // If you have more than 1 health left and collide with enemey, health decreses
         {
                 collisionTime = 0f;
-                health.DecreaseHealth();
+                health.DecreaseHealthByOne();
         }
         else if (collision.gameObject.tag == "Enemy" && health.GetCurrentHealth() == 1) // If you only have one health left and collide with enemy, END OF GAME!!!
         {
@@ -139,7 +169,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (health.GetCurrentHealth() > 1)
                 {
-                    health.DecreaseHealth();
+                    health.DecreaseHealthByOne();
                 }
                 else if (health.GetCurrentHealth() == 1)
                 {
@@ -157,7 +187,9 @@ public class PlayerController : MonoBehaviour
     public float GetDepth()
     {
         if (depth >= 0f)                // make sure depth isn't above 0 on UI, if it is, just return 0
-            return 0f; 
+            return 0f;
+        if (depth <= -1000f)
+            return -1000f;
         else                            // otherwise return the value of depth
             return depth;
     }
@@ -176,4 +208,35 @@ public class PlayerController : MonoBehaviour
         else                            // otherwise return the value of the happyMeter
             return happyMeter;
     }
+
+    public void SetTorpedo()
+    {
+        hasTorpedo = true;
+        health.IncreaseHealthToMax();
+    }
+    public void SetBomb()
+    {
+        hasBomb = true;
+        health.IncreaseHealthToMax();
+    }
+    public void SetHasExtraHealth()
+    {
+        hasExtraHealth = true;
+        health.UpgradeMaxHealth(10);
+        health.IncreaseHealthToMax();
+    }
+
+    public bool GetHasTorpedo()
+    {
+        return hasTorpedo;
+    }
+    public bool GetHasBomb()
+    {
+        return hasBomb;
+    }
+    public bool GetHasExtraHealth()
+    {
+        return hasExtraHealth;
+    }
+
 }

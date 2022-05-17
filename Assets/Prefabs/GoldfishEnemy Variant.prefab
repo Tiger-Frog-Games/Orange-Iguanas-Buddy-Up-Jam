@@ -7,6 +7,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6512313408045569780, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 564545768330043392, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 564545768330043392, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 564545768330043392, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
+      propertyPath: m_LinearDrag
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 564545768330043392, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
+      propertyPath: m_AngularDrag
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 564545768330043394, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
+      propertyPath: speed
+      value: 2500
+      objectReference: {fileID: 0}
     - target: {fileID: 564545768330043394, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: target
       value: 
@@ -17,7 +41,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043398, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: m_Name
-      value: GoldfishEnemy
+      value: GoldfishEnemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043405, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: m_RootOrder
@@ -100,20 +124,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06658679, y: -0.059578538}
+  m_Offset: {x: -0.175, y: -0.035}
   serializedVersion: 2
-  m_Radius: 0.3387906
---- !u!114 &869673726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6663163517855332320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00403565b741dc644ba728387fa8c00c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 1
+  m_Radius: 0.27730513

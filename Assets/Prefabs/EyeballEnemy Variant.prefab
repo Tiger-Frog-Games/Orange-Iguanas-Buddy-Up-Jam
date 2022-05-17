@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6512313408045569780, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: maxHealth
-      value: 3
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043393, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: m_Size.x
@@ -37,19 +37,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043394, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: waitTime
-      value: 0.15
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043394, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: changeTime
-      value: 0.15
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043394, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: nextWaypointDistance
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043398, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: m_Name
-      value: EyeballEnemy
+      value: EyeballEnemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 564545768330043405, guid: f4ce8c8650a95f54bb427704013e94ca, type: 3}
       propertyPath: m_RootOrder

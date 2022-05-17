@@ -5,7 +5,7 @@
 #charname.Captain
 #sprite.cap_neutral
 
-Rumor has it that the lost treasure of the late Captain Black Barnacles lies at the bottom of the ocean near this very spot.
+So you heard a rumor about a sunken treasure at the bottom of the ocean near this very spot?
 
 #charname.Sailor
 #sprite.sai_neutral
@@ -18,9 +18,9 @@ But the ocean is said to be 1,000 meters deep here!
 And our ship is made for sailing, not diving.
 
 #charname.Robot
-#sprite.rob_happy
+#sprite.rob_neutral
 
-The captain asked me to modify the ship to dive deep!
+The captain...eh, Officer Puffypants asked me to modify the ship to dive deep!
 
 #charname.Captain
 #sprite.cap_neutral
@@ -28,32 +28,32 @@ The captain asked me to modify the ship to dive deep!
 And we're almost ready you salty seadogs.
 
 #charname.Sailor
-#sprite.sai_mad
+#sprite.sai_neutral
 
 There's supposed to be monsters down in the deep!
 
 #charname.Captain
 #sprite.cap_mad
 
-I thought ye were my crew...
+See what you will have to deal with! Good luck...
 
 #charname.Engineer
-#sprite.eng_happy
+#sprite.eng_neutral
 
-I'll man the ballast!
+My name is Wade Wilds. I'll man the ballast!
 
 #charname.Sailor
 #sprite.sai_happy
 
-I'll ready the torpedoes!
+I'll ready the torpedoes! You can call me McGee.
 
 #charname.Robot
 #sprite.rob_happy
 
-I'll be ready to party!
+And I am the notorious Gordon the Wired. I'll be ready to party!
 
 #charname.Captain
-#sprite.cap_neutral
+#sprite.cap_happy
 
 That's more like it, now let's go where no pirate has before!
 

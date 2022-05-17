@@ -5,7 +5,7 @@
 #charname.Captain
 #sprite.cap_happy
 
-We did it! 
+Shiver me timbers! We did it! 
 
 #charname.Sailor
 #sprite.sai_happy
@@ -21,5 +21,24 @@ We're rich!
 #sprite.rob_happy
 
 It's time to party!
+
+#charname.Captain
+#sprite.cap_neutral
+
+Wait what is that inside!
+
+Oh. This isn't treasure.
+
+Is... is that a baby... monster???
+
+#charname.Engineer
+#sprite.eng_mad
+
+CAPTAIN????
+
+#charname.Robot
+#sprite.rob_mad
+
+QUICK! BACK TO THE SURFACE!! RIGHT AWAY!!
 
     -> END

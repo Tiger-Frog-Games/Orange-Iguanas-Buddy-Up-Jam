@@ -20,14 +20,15 @@ public class UIController : MonoBehaviour
 
     [SerializeField] private Slider ballastSlider;
     [SerializeField] Gradient ballastGradient;
-    [SerializeField] private Image ballastBar;
+    [SerializeField] private Image ballastLineHolder;
+    [SerializeField] private Sprite[] ballastLines;
 
     [SerializeField] private Health playerHealth;   // reference to Player's Health
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        depthText.text = "Depth: " + playerController.GetDepth().ToString("F2");            // Depth display--For now, we're just displaying text, but we'll want to convert some or all of these to meters
+        depthText.text = SetDepth();            // Depth display--For now, we're just displaying text, but we'll want to convert some or all of these to meters
         SetBallast();                                         // Ballast display--Having a horizontal meter display it with red in the middle and green on the ends
         SetHappiness();                                    // Happiness display--Having a vertical meter display it with green at the top and yellow in the middle and red at bottom when close to 0
         healthText.text = "Health: " + SetHealth().ToString();
@@ -41,12 +42,39 @@ public class UIController : MonoBehaviour
 
     private void SetBallast()
     {
-        ballastSlider.value = playerController.GetBallast();
-        ballastBar.color = ballastGradient.Evaluate(ballastSlider.normalizedValue);
+        string printThis = playerController.GetBallast().ToString();
+        Debug.Log(printThis);
+
+        if (playerController.GetBallast() == .5f)
+            ballastLineHolder.sprite = ballastLines[0];
+        else if (playerController.GetBallast() >= .3f && playerController.GetBallast() < .5f)
+            ballastLineHolder.sprite = ballastLines[1];
+        else if (playerController.GetBallast() >= .1f && playerController.GetBallast() < .3f)
+            ballastLineHolder.sprite = ballastLines[2];
+        else if (playerController.GetBallast() > 0f && playerController.GetBallast() < .1f)
+            ballastLineHolder.sprite = ballastLines[3];
+        else if (playerController.GetBallast() == 0)
+            ballastLineHolder.sprite = ballastLines[4];
+        else if (playerController.GetBallast() < 0f && playerController.GetBallast() > -.1f)
+            ballastLineHolder.sprite = ballastLines[5];
+        else if (playerController.GetBallast() <= -.1f && playerController.GetBallast() > -.3f)
+            ballastLineHolder.sprite = ballastLines[6];
+        else if (playerController.GetBallast() <= -.3f && playerController.GetBallast() > -.5f)
+            ballastLineHolder.sprite = ballastLines[7];
+        else if (playerController.GetBallast() == -.5f)
+            ballastLineHolder.sprite = ballastLines[8];
+
+        //        ballastSlider.value = playerController.GetBallast();
+        //        ballastBar.color = ballastGradient.Evaluate(ballastSlider.normalizedValue);
     }
 
     private int SetHealth()
     {
         return playerHealth.GetCurrentHealth();
+    }
+
+    private string SetDepth()
+    {
+        return "Depth: " + (playerController.GetDepth().ToString("F0"));
     }
 }

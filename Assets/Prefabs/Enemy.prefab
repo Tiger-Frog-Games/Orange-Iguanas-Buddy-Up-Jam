@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 564545768330043392}
   - component: {fileID: 564545768330043393}
   - component: {fileID: -6512313408045569780}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -135,6 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 1
+  spriteRenderer: {fileID: 564545768737797163}
+  isEnemy: 1
 --- !u!1 &564545768737797161
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +148,7 @@ GameObject:
   - component: {fileID: 564545768737797160}
   - component: {fileID: 564545768737797163}
   - component: {fileID: 564545768737797162}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}

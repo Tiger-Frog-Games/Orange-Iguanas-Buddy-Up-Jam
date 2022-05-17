@@ -30,7 +30,7 @@ public class Torpedo : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             health = collision.gameObject.GetComponent<Health>();
-            health.DecreaseHealth();
+            health.DecreaseHealthByFive();
 
         }                
         Destroy(gameObject);
